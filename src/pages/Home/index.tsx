@@ -1,10 +1,12 @@
 import * as S from "./style";
 import { ReactComponent as Search } from "assets/icons/search.svg";
+import Menu from "components/Menu";
 
 // o S da teg Home se refere  styled.section do Style
 const Home = () => {
   return (
     <S.Home>
+      <Menu />
       <S.HomeContent>
         <header>
           <S.HomeHeaderDetails>
