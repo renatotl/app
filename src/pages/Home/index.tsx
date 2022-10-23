@@ -1,19 +1,31 @@
 import * as S from "./style";
 import { ReactComponent as Search } from "assets/icons/search.svg";
 import Menu from "components/Menu";
+import { RoutePath } from "types/routes";
+import { navigationItems } from "data/navigation";
+import { DateTime } from "luxon";
+
 
 // o S da teg Home se refere  styled.section do Style
 const Home = () => {
+
+  // pegando a hpra de agora.
+  // weekday tambem mostra o dia da semana
+  const dateDescription = DateTime.now().toLocaleString({
+    ...DateTime.DATE_SHORT,
+    weekday: "long",
+  });
+
   return (
     <S.Home>
-      <Menu />
+	      <Menu active={RoutePath.HOME} navItems={navigationItems} />
       <S.HomeContent>
         <header>
           <S.HomeHeaderDetails>
             <div>
               <S.HomeHeaderDetailsLogo>Pizza Fresh</S.HomeHeaderDetailsLogo>
               <S.HomeHeaderDetailsDate>
-                Aqui ficará a data
+              {dateDescription}
               </S.HomeHeaderDetailsDate>
             </div>
             <S.HomeHeaderDetailsSearch>
