@@ -4,6 +4,7 @@ import Menu from "components/Menu";
 import { RoutePath } from "types/routes";
 import { navigationItems } from "data/navigation";
 import { DateTime } from "luxon";
+import ProductItemList from "components/ProductItemList";
 
 
 // o S da teg Home se refere  styled.section do Style
@@ -39,7 +40,7 @@ const Home = () => {
             <b>Pizzas</b>
           </S.HomeProductTitle>
           <S.HomeProductList>
-            <p>Lista de produtos aqui</p>
+          <ProductItemList></ProductItemList>
           </S.HomeProductList>
         </div>
       </S.HomeContent>
