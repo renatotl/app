@@ -5,11 +5,10 @@ import { RoutePath } from "types/routes";
 import { navigationItems } from "data/navigation";
 import { DateTime } from "luxon";
 import ProductItemList from "components/ProductItemList";
-
+import ProductItem from "components/ProductItem";
 
 // o S da teg Home se refere  styled.section do Style
 const Home = () => {
-
   // pegando a hpra de agora.
   // weekday tambem mostra o dia da semana
   const dateDescription = DateTime.now().toLocaleString({
@@ -19,14 +18,14 @@ const Home = () => {
 
   return (
     <S.Home>
-	      <Menu active={RoutePath.HOME} navItems={navigationItems} />
+      <Menu active={RoutePath.HOME} navItems={navigationItems} />
       <S.HomeContent>
         <header>
           <S.HomeHeaderDetails>
             <div>
               <S.HomeHeaderDetailsLogo>Pizza Fresh</S.HomeHeaderDetailsLogo>
               <S.HomeHeaderDetailsDate>
-              {dateDescription}
+                {dateDescription}
               </S.HomeHeaderDetailsDate>
             </div>
             <S.HomeHeaderDetailsSearch>
@@ -40,7 +39,9 @@ const Home = () => {
             <b>Pizzas</b>
           </S.HomeProductTitle>
           <S.HomeProductList>
-          <ProductItemList></ProductItemList>
+            <ProductItemList>
+              <ProductItem />
+            </ProductItemList>
           </S.HomeProductList>
         </div>
       </S.HomeContent>
@@ -57,8 +58,20 @@ export default Home;
 o s é um apelido do alias do arquivo style
 */
 
-
 /* <aside>
 		<p>Detalhes dos pedidos aqui</p>
 	</aside> 
    essa teg geralmente representa uma barra vertical ao lado */
+
+
+
+
+   /*
+No momento o nosso componente ProductItemList está apresentando um erro que o compilador nos apresenta com a seguinte mensagem:
+
+type {children: element} has no properties
+   
+   Este é um erro comum durante a construção de um componente, pois o compilador sabe que o componente "está aguardando props que ainda não foram definidas", então vamos fazer isso através da abertura de uma interface, onde iremos declarar a children necessária.
+No arquivo index.tsx do componente ProductItemList, vamos inserir a interface com o seguinte código após os imports:
+
+*/
