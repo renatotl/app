@@ -6,6 +6,7 @@ import { navigationItems } from "data/navigation";
 import { DateTime } from "luxon";
 import ProductItemList from "components/ProductItemList";
 import ProductItem from "components/ProductItem";
+import OrderDetails from "components/OrderDetails";
 
 // o S da teg Home se refere  styled.section do Style
 const Home = () => {
@@ -46,7 +47,7 @@ const Home = () => {
         </div>
       </S.HomeContent>
       <aside>
-        <p>Detalhes dos pedidos aqui</p>
+      <OrderDetails />
       </aside>
     </S.Home>
   );
