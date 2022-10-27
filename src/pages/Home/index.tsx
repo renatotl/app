@@ -7,6 +7,7 @@ import { DateTime } from "luxon";
 import ProductItemList from "components/ProductItemList";
 import ProductItem from "components/ProductItem";
 import OrderDetails from "components/OrderDetails";
+import Overlay from "components/Overlay";
 
 // o S da teg Home se refere  styled.section do Style
 const Home = () => {
@@ -47,8 +48,11 @@ const Home = () => {
         </div>
       </S.HomeContent>
       <aside>
-      <OrderDetails />
+        <OrderDetails />
       </aside>
+      <Overlay>
+
+      </Overlay>
     </S.Home>
   );
 };

@@ -2,6 +2,7 @@ import * as S from "./style";
 import ButtonToggle from "components/ButtonToggle";
 import OrderItemList from "components/OrderItemList";
 import ButtonLarge from "components/ButtonLarge";
+import OrderItem from "components/OrderItem";
 
 // o OrderDetails é como um container de outros pedidos com informaçoes
 const OrderDetails = () => {
@@ -22,7 +23,7 @@ const OrderDetails = () => {
               <h4>Preço</h4>
             </S.OrderDetailsListTitle>
           }
-          list={"Lista de Itens"}
+          list={<OrderItem />}
           footer={
             <S.OrderDetailsListFooter>
               <S.OrderDetailsListFooterRow>
