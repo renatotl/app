@@ -8,6 +8,7 @@ import ProductItemList from "components/ProductItemList";
 import ProductItem from "components/ProductItem";
 import OrderDetails from "components/OrderDetails";
 import Overlay from "components/Overlay";
+import CheckoutSection from "components/CheckoutSection";
 
 // o S da teg Home se refere  styled.section do Style
 const Home = () => {
@@ -20,42 +21,42 @@ const Home = () => {
 
   return (
     <S.Home>
-      <Menu active={RoutePath.HOME} navItems={navigationItems} />
-      <S.HomeContent>
-        <header>
-          <S.HomeHeaderDetails>
-            <div>
-              <S.HomeHeaderDetailsLogo>Pizza Fresh</S.HomeHeaderDetailsLogo>
-              <S.HomeHeaderDetailsDate>
-                {dateDescription}
-              </S.HomeHeaderDetailsDate>
-            </div>
-            <S.HomeHeaderDetailsSearch>
-              <Search />
-              <input type="text" placeholder="Procure pelo sabor" />
-            </S.HomeHeaderDetailsSearch>
-          </S.HomeHeaderDetails>
-        </header>
-        <div>
-          <S.HomeProductTitle>
-            <b>Pizzas</b>
-          </S.HomeProductTitle>
-          <S.HomeProductList>
-            <ProductItemList>
-              <ProductItem />
-            </ProductItemList>
-          </S.HomeProductList>
-        </div>
-      </S.HomeContent>
-      <aside>
-        <OrderDetails />
-      </aside>
-      <Overlay>
-
-      </Overlay>
-    </S.Home>
-  );
-};
+    <Menu active={RoutePath.HOME} navItems={navigationItems} />
+    <S.HomeContent>
+      <header>
+        <S.HomeHeaderDetails>
+          <div>
+            <S.HomeHeaderDetailsLogo>Pizza Fresh</S.HomeHeaderDetailsLogo>
+            <S.HomeHeaderDetailsDate>
+              {dateDescription}
+            </S.HomeHeaderDetailsDate>
+          </div>
+          <S.HomeHeaderDetailsSearch>
+            <Search />
+            <input type="text" placeholder="Procure pelo sabor" />
+          </S.HomeHeaderDetailsSearch>
+        </S.HomeHeaderDetails>
+      </header>
+      <div>
+        <S.HomeProductTitle>
+          <b>Pizzas</b>
+        </S.HomeProductTitle>
+        <S.HomeProductList>
+          <ProductItemList>
+            <ProductItem />
+          </ProductItemList>
+        </S.HomeProductList>
+      </div>
+    </S.HomeContent>
+    <aside>
+      <OrderDetails />
+    </aside>
+    <Overlay>
+      <CheckoutSection />
+    </Overlay>
+  </S.Home>
+);
+};;
 
 export default Home;
 
