@@ -21,7 +21,8 @@ const Settings = () => {
         </header>
         <S.SettingsContent>
           <S.SettingsContentSidebar>
-          <NavColumn />
+            {/* Trecho precisa ser alterado posteriormente */}
+            <NavColumn activeRoute={RoutePath.SETTINGS_TABLES} />
           </S.SettingsContentSidebar>
           <S.SettingsContentBox>
             <S.SettingsContentBoxEmpty>

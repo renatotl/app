@@ -11,7 +11,6 @@ const Router = () => {
       <Route path={RoutePath.LOGIN} element={<Login />} />
       <Route path={RoutePath.HOME} element={<Home />} />
       <Route path={RoutePath.SETTINGS} element={<Settings />} />
-
     </Routes>
   );
 };
