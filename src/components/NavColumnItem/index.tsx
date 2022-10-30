@@ -20,6 +20,11 @@ const NavColumnItem = ({
   active = false,
   ...props
 }: NavColumnItemProps) => {
+
+
+
+
+  // active é uma propriedade que recebe active com o valor boulean false
   return (
     <S.NavColumnItem active={active} {...props}>
       <S.NavColumnItemIcon>{icon}</S.NavColumnItemIcon>
