@@ -9,9 +9,12 @@ import { NavItem } from "./types";
 interface MenuProps {
   active: RoutePath; //define qual é a rota ativa no momento
   navItems: NavItem[];
+  onNavigate: (data: RoutePath) => void;// recebe um rota como params e nos manta para algum lugar. Exemplo: se eu clicar em setting me manda para setting
+  onLogout: () => void
 }
 
-const Menu = ({ active, navItems }: MenuProps) => {
+// todo parâmetro precisa ser declarado em MenuProps
+const Menu = ({active, navItems, onNavigate, onLogout}:MenuProps) => {
   return (
     <S.Menu>
       <nav>
@@ -21,13 +24,16 @@ const Menu = ({ active, navItems }: MenuProps) => {
 
         {navItems.map((item, index) => (
           <S.MenuItem key={`MenuItem-${index}`} active={item.path === active}>
-            <S.MenuItemButton active={item.path === active}>
+            <S.MenuItemButton 
+            active={item.path === active}
+            onClick={() => onNavigate(item.path)}
+            >
               {item.icon}
             </S.MenuItemButton>
           </S.MenuItem>
         ))}
       </nav>
-      <S.MenuItemLogout>
+      <S.MenuItemLogout onClick={onLogout}>
         <Logout />
       </S.MenuItemLogout>
     </S.Menu>

@@ -9,6 +9,7 @@ import ProductItem from "components/ProductItem";
 import OrderDetails from "components/OrderDetails";
 import Overlay from "components/Overlay";
 import CheckoutSection from "components/CheckoutSection";
+import { useNavigate } from "react-router-dom";
 
 // o S da teg Home se refere  styled.section do Style
 const Home = () => {
@@ -19,9 +20,18 @@ const Home = () => {
     weekday: "long",
   });
 
+  const navigate = useNavigate();
+  // ela recebe uma rota e nos direcionara para essa rota 
+  const handleNavigation = (path: RoutePath) => navigate(path);
+
   return (
     <S.Home>
-    <Menu active={RoutePath.HOME} navItems={navigationItems} />
+    <Menu 
+    active={RoutePath.HOME} 
+    navItems={navigationItems} 
+    onNavigate={handleNavigation}
+    onLogout={() => navigate(RoutePath.LOGIN)}
+    />
     <S.HomeContent>
       <header>
         <S.HomeHeaderDetails>

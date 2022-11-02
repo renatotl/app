@@ -2,7 +2,7 @@ import Menu from "components/Menu";
 import { RoutePath } from "types/routes";
 import { navigationItems } from "data/navigation";
 import * as S from "./style";
-import { Outlet } from "react-router-dom";// o componente Outlet vem da lib react-router-dom
+import { Outlet, useNavigate } from "react-router-dom";// o componente Outlet vem da lib react-router-dom
 import NavColumn from "components/NavColumn";
 
 
@@ -11,10 +11,22 @@ import NavColumn from "components/NavColumn";
 
 //Desta forma finalizamos a criação e estilização da estrutura da página Settings.
 
+
+const navigate = useNavigate();
+  // ela recebe uma rota e nos direcionara para essa rota 
+  const handleNavigation = (path: RoutePath) => navigate(path);
+  
+
+  
 const Settings = () => {
   return (
     <S.Settings>
-      <Menu active={RoutePath.SETTINGS} navItems={navigationItems} />
+      <Menu 
+      active={RoutePath.SETTINGS} 
+      navItems={navigationItems} 
+      onNavigate={handleNavigation}
+      onLogout={() => navigate(RoutePath.LOGIN)}
+    />
       <S.SettingsPage>
         <header>
           <S.SettingsPageHeaderTitle>Configurações</S.SettingsPageHeaderTitle>
