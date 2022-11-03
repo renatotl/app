@@ -1,6 +1,8 @@
 import logo from "assets/imgs/logo.png";
 import { ReactComponent as Logout } from "assets/icons/logout.svg";
+//  * = all
 import * as S from "./style";
+
 import { RoutePath } from "types/routes";
 import { NavItem } from "./types";
 
