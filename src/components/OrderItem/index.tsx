@@ -19,6 +19,32 @@ const OrderItem = ({
 }: OrderItemProps) => {
   const [quantityState, setQuantityState] = useState(quantity);
 
+
+// Vamos criar algumas funções para que quando o usuário clique em uma pizza, ela seja adicionada automaticamente na lista do pedido
+  const [observationState, setObservationState] = useState(observation);
+
+
+  // responsável por alterar a descrição
+  const handleObservation = (data: string) => {
+    // o valor da quantidade é recebido em data
+    setObservationState(data);
+  };
+
+  // responsável por alterar a quantidade
+  const handleQuantity = (data: number) => {
+    setQuantityState(data);
+  };
+
+  useEffect(() => {
+    handleObservation(observation);// descrição do pedido
+  }, [observation]);
+
+  useEffect(() => {
+    handleQuantity(quantity);
+  }, [quantity]);
+
+
+
   return (
     <S.OrderItem {...props} role="listitem">
       <S.OrderItemLeft>
@@ -48,6 +74,10 @@ const OrderItem = ({
         <S.OrderItemLeftObservation
           type="text"
           placeholder="Observações do pedido"
+           value={observationState}
+          onChange={({ target }) => {
+            setObservationState(target.value);
+          }}
         />
       </S.OrderItemLeft>
       <S.OrderItemRight>

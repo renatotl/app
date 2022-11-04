@@ -13,6 +13,9 @@ import { useNavigate } from "react-router-dom";
 import { products } from "mocks/products";
 import { orders } from "mocks/orders";
 import { ProductResponse } from "types/Product";
+import { OrderType } from "types/orderType";
+import { useState } from "react";
+
 
 // o S da teg Home se refere  styled.section do Style
 const Home = () => {
@@ -24,6 +27,11 @@ const Home = () => {
   });
 
   const navigate = useNavigate();
+// qual está ativo Comer_No_LOCAL ou outros
+  const [activeOrderType, setActiverOrderType] = useState(
+    OrderType.COMER_NO_LOCAL
+  );
+
   // ela recebe uma rota e nos direcionara para essa rota 
   const handleNavigation = (path: RoutePath) => navigate(path);
 
@@ -71,7 +79,11 @@ const Home = () => {
       </div>
     </S.HomeContent>
     <aside>
-    <OrderDetails orders={orders} />
+    <OrderDetails 
+    orders={orders} 
+    onChangeActiveOrderType={(data) => setActiverOrderType(data)}
+    activeOrderType={activeOrderType}
+    />
     </aside>
     <Overlay>
       <CheckoutSection />
