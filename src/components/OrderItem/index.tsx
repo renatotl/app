@@ -12,6 +12,8 @@ export type OrderItemProps = {
   onRemoveItem?: () => void;
 } & DivType;
 
+// props que são funções, elas devolvem do filho para o pai
+// props que não são funções, devolvel do pai para o filho
 const OrderItem = ({
   product,
   quantity,

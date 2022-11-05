@@ -14,6 +14,7 @@ type OrderDetailsType = HTMLAttributes<HTMLDivElement>;
 type OrderDetailsProps = {
   orders: OrderItemType[];
   onChangeActiveOrderType: (data: OrderType) => void;
+  //recebe um id do tipo string
   onRemoveItem: (id: string) => void;
   activeOrderType: OrderType;
 } & OrderDetailsType;

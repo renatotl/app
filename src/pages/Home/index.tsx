@@ -41,23 +41,29 @@ const Home = () => {
 
 
 
-
+// definindo como array vazio
   const [orders, setOrders] = useState<OrderItemType[]>([]);
 
 
 //Vamos implementar a função handleSelection para que quando o usuário clique em uma pizza, ela seja adicionada automaticamente na lista do pedido.
 const handleSelection = (product: ProductResponse) => {
+  // fazendo uma bunca dentro de find/ para cada item encontrado sexecuta a função comprar o id do item selecionado com o id do produtos/ isso resulta em truer ou false
   const existing = orders.find((i) => i.product.id === product.id);
+  //verifica se existe algum conteúdo dentro de existing/ ou seja se ela é true ou false/ se ela for verdadeira vamos pegar a quantidade dela e somar uma unidade ou somente um.
   const quantity = existing ? existing.quantity + 1 : 1;
+  //recebe um objeto com duas probpriedades 
   const item: OrderItemType = { product, quantity };
-
+//pegando existing/ se ela for true faz um map em orders/ para cada item em orders ele compara i.product.id com existing.product.id/ se for true ele renderiza o item caso não ele retiorna somente o i
   const list = existing
     ? orders.map((i) => (i.product.id === existing.product.id ? item : i))
+    
     : [...orders, item];
   setOrders(list);
 };
 
+// função que de fato remove o item
 const handleRemoveOrderItem = (id: string) => {
+  // para cada item deste pedido será verificado o i.product.id se é diferente do id que ela recebeu na função/ se for diferente ela mantem na lista, mas se for igual ela remove da lista/ assim mudamos o state 
   const filtered = orders.filter((i) => i.product.id != id);
   setOrders(filtered);
 };
