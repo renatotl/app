@@ -9,16 +9,17 @@ export type OrderItemProps = {
   product: ProductResponse;
   quantity: number;
   observation?: string;
+  onRemoveItem?: () => void;
 } & DivType;
 
 const OrderItem = ({
   product,
   quantity,
   observation = "",
+  onRemoveItem,
   ...props
 }: OrderItemProps) => {
   const [quantityState, setQuantityState] = useState(quantity);
-
 
 // Vamos criar algumas funções para que quando o usuário clique em uma pizza, ela seja adicionada automaticamente na lista do pedido
   const [observationState, setObservationState] = useState(observation);
@@ -84,7 +85,7 @@ const OrderItem = ({
         <S.OrderItemRightTotalPrice>
           R$ {Number(product.price * quantityState).toFixed(2)}
         </S.OrderItemRightTotalPrice>
-        <S.OrderItemRightTrash>
+        <S.OrderItemRightTrash onClick={onRemoveItem}>
           <Trash />
         </S.OrderItemRightTrash>
       </S.OrderItemRight>

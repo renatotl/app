@@ -11,10 +11,11 @@ import Overlay from "components/Overlay";
 import CheckoutSection from "components/CheckoutSection";
 import { useNavigate } from "react-router-dom";
 import { products } from "mocks/products";
-import { orders } from "mocks/orders";
 import { ProductResponse } from "types/Product";
 import { OrderType } from "types/orderType";
 import { useState } from "react";
+import { OrderItemType } from "types/OrderItemType";
+
 
 
 // o S da teg Home se refere  styled.section do Style
@@ -32,10 +33,34 @@ const Home = () => {
     OrderType.COMER_NO_LOCAL
   );
 
+
+
+
   // ela recebe uma rota e nos direcionara para essa rota 
   const handleNavigation = (path: RoutePath) => navigate(path);
 
-  const handleSelection = (product: ProductResponse) => {};
+
+
+
+  const [orders, setOrders] = useState<OrderItemType[]>([]);
+
+
+//Vamos implementar a função handleSelection para que quando o usuário clique em uma pizza, ela seja adicionada automaticamente na lista do pedido.
+const handleSelection = (product: ProductResponse) => {
+  const existing = orders.find((i) => i.product.id === product.id);
+  const quantity = existing ? existing.quantity + 1 : 1;
+  const item: OrderItemType = { product, quantity };
+
+  const list = existing
+    ? orders.map((i) => (i.product.id === existing.product.id ? item : i))
+    : [...orders, item];
+  setOrders(list);
+};
+
+const handleRemoveOrderItem = (id: string) => {
+  const filtered = orders.filter((i) => i.product.id != id);
+  setOrders(filtered);
+};
 
   return (
     <S.Home>
@@ -83,6 +108,7 @@ const Home = () => {
     orders={orders} 
     onChangeActiveOrderType={(data) => setActiverOrderType(data)}
     activeOrderType={activeOrderType}
+    onRemoveItem={handleRemoveOrderItem}
     />
     </aside>
     <Overlay>

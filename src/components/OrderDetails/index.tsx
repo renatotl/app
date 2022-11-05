@@ -14,6 +14,7 @@ type OrderDetailsType = HTMLAttributes<HTMLDivElement>;
 type OrderDetailsProps = {
   orders: OrderItemType[];
   onChangeActiveOrderType: (data: OrderType) => void;
+  onRemoveItem: (id: string) => void;
   activeOrderType: OrderType;
 } & OrderDetailsType;
 
@@ -23,6 +24,7 @@ type OrderDetailsProps = {
 const OrderDetails = ({
   orders,
   onChangeActiveOrderType,
+  onRemoveItem,
   activeOrderType,
 }: OrderDetailsProps) => {
 
@@ -75,6 +77,7 @@ const OrderDetails = ({
             Boolean(orders.length) ? (
               orders.map((item, index) => (
                 <OrderItem
+                onRemoveItem={() => onRemoveItem(item.product.id)}
                   product={item.product}
                   quantity={item.quantity}
                   observation={item.observation}
