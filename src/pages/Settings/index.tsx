@@ -10,6 +10,7 @@ import NavColumn from "components/NavColumn";
      
 
 //Desta forma finalizamos a criação e estilização da estrutura da página Settings.
+const Settings = () => {
 
 
 const navigate = useNavigate();
@@ -18,7 +19,6 @@ const navigate = useNavigate();
   
 
   
-const Settings = () => {
   return (
     <S.Settings>
       <Menu 
