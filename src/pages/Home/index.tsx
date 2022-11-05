@@ -44,6 +44,9 @@ const Home = () => {
 // definindo como array vazio
   const [orders, setOrders] = useState<OrderItemType[]>([]);
 
+  //state que controla a tela de pagamento
+  const [proceedToPayment, setProceedToPayment] = useState<boolean>(false);
+
 
 //Vamos implementar a função handleSelection para que quando o usuário clique em uma pizza, ela seja adicionada automaticamente na lista do pedido.
 const handleSelection = (product: ProductResponse) => {
@@ -112,14 +115,23 @@ const handleRemoveOrderItem = (id: string) => {
     <aside>
     <OrderDetails 
     orders={orders} 
+    onProceedToPayment={() => setProceedToPayment(true)}
+
+    onOrdersChange={(data) => setOrders(data)}
     onChangeActiveOrderType={(data) => setActiverOrderType(data)}
     activeOrderType={activeOrderType}
     onRemoveItem={handleRemoveOrderItem}
     />
     </aside>
-    <Overlay>
-      <CheckoutSection />
-    </Overlay>
+    {proceedToPayment && (
+        <Overlay>
+          <CheckoutSection
+            orders={orders}
+            onOrdersChange={(data) => setOrders(data)}
+            onCloseSection={() => setProceedToPayment(false)}
+          />
+        </Overlay>
+      )}
   </S.Home>
 );
 };;

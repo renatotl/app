@@ -13,6 +13,10 @@ type OrderDetailsType = HTMLAttributes<HTMLDivElement>;
 
 type OrderDetailsProps = {
   orders: OrderItemType[];
+  onProceedToPayment: () => void;//enviando a informação para o compoente pai o Home
+  // sempre que acontecer uma alteração no pedido
+  onOrdersChange: (orders: OrderItemType[]) => void;
+
   onChangeActiveOrderType: (data: OrderType) => void;
   //recebe um id do tipo string
   onRemoveItem: (id: string) => void;
@@ -24,6 +28,8 @@ type OrderDetailsProps = {
 
 const OrderDetails = ({
   orders,
+  onOrdersChange,
+  onProceedToPayment,
   onChangeActiveOrderType,
   onRemoveItem,
   activeOrderType,
@@ -40,6 +46,19 @@ const OrderDetails = ({
 
     // atualiza o valor da tela quando a gente add ou remove alguns item da lista
   const [priceState, setPriceState] = useState(price);
+
+
+
+  const handleChange = (data: OrderItemType) => {
+    const list = orders.map((item) =>
+    // se for igual ele renderiza os dados do order item, se nao ele renderiza o proprio item
+      item.product.id === data.product.id ? data : item
+    );
+
+    onOrdersChange(list);
+  }
+
+
 // sempre que acontece uma determinada atualização na variável orders, price. ele atualiza
   useEffect(() => {
     setPriceState(price);
@@ -78,6 +97,7 @@ const OrderDetails = ({
             Boolean(orders.length) ? (
               orders.map((item, index) => (
                 <OrderItem
+                onItemChange={handleChange}
                 onRemoveItem={() => onRemoveItem(item.product.id)}
                   product={item.product}
                   quantity={item.quantity}
@@ -95,7 +115,7 @@ const OrderDetails = ({
               <span>Subtotal</span>
                 <span>R$ {priceState.toFixed(2)}</span>
               </S.OrderDetailsListFooterRow>
-              <ButtonLarge value="Continue para o pagamento" />
+              <ButtonLarge onClick={onProceedToPayment} value="Continue para o pagamento" />
             </S.OrderDetailsListFooter>
           }
         />

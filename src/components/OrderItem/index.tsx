@@ -2,14 +2,19 @@ import { ReactComponent as Trash } from "assets/icons/trash.svg";
 import { ButtonHTMLAttributes, useEffect, useState } from "react";
 import { ProductResponse } from "types/Product";
 import * as S from "./style";
+import { OrderItemType } from "types/OrderItemType";
 
 type DivType = ButtonHTMLAttributes<HTMLDivElement>;
 
 export type OrderItemProps = {
+  canDelete?: Boolean;
+
   product: ProductResponse;
   quantity: number;
   observation?: string;
   onRemoveItem?: () => void;
+  onItemChange: (item: OrderItemType) => void;
+
 } & DivType;
 
 // props que são funções, elas devolvem do filho para o pai
@@ -19,6 +24,9 @@ const OrderItem = ({
   quantity,
   observation = "",
   onRemoveItem,
+  onItemChange,
+  canDelete = true,
+
   ...props
 }: OrderItemProps) => {
   const [quantityState, setQuantityState] = useState(quantity);
@@ -37,6 +45,17 @@ const OrderItem = ({
   const handleQuantity = (data: number) => {
     setQuantityState(data);
   };
+
+/*Até agora já implementamos várias funcionalidades em relação aos pedidos, mas se tentarmos modificar a quantidade manualmente, o subtotal não modifica.
+Vamos resolver isso indo até src/components/OrderItem/index.tsx, adicionamos uma nova propriedade, criamos uma função chamada handleChange e a invocamos em OrderItemQuantity e OrderItemLeftObservation*/
+  const handleChange = (quantityParam: number, observationParam: string) => {
+    onItemChange({
+      product: product,
+      quantity: quantityParam,
+      observation: observationParam,
+    });
+  };
+
 
   useEffect(() => {
     handleObservation(observation);// descrição do pedido
@@ -71,15 +90,17 @@ const OrderItem = ({
             value={quantityState}
             onChange={({ target }) => {
               setQuantityState(Number(target.value));
+              handleChange(Number(target.value), observationState);
             }}
           />
         </S.OrderItemLeftTop>
         <S.OrderItemLeftObservation
           type="text"
           placeholder="Observações do pedido"
-           value={observationState}
+          value={observationState}
           onChange={({ target }) => {
             setObservationState(target.value);
+            handleChange(quantityState, target.value);
           }}
         />
       </S.OrderItemLeft>
@@ -87,9 +108,11 @@ const OrderItem = ({
         <S.OrderItemRightTotalPrice>
           R$ {Number(product.price * quantityState).toFixed(2)}
         </S.OrderItemRightTotalPrice>
-        <S.OrderItemRightTrash onClick={onRemoveItem}>
-          <Trash />
-        </S.OrderItemRightTrash>
+        {canDelete && (
+          <S.OrderItemRightTrash onClick={onRemoveItem}>
+            <Trash />
+          </S.OrderItemRightTrash>
+        )}
       </S.OrderItemRight>
     </S.OrderItem>
   );
