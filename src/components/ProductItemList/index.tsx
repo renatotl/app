@@ -1,11 +1,15 @@
 import * as S from "./style";
 
+
+/*Até aqui o nosso botão de seguir para o pagamento fica habilitado a todo o momento, mesmo não contendo nenhum produto no pedido e nenhuma mesa selecionada.
+Vamos configurá-lo para habilitar apenas quando tiver pelo menos um produto adicionado e uma selecionada.*/
 interface ProductItemListProps {
+  onSelectTable: (data: number) => void;
   children: React.ReactNode;
 }
 
 
-const ProductItemList = ({ children }: ProductItemListProps) => {
+const ProductItemList = ({ children, onSelectTable }: ProductItemListProps) => {
 
 
 
@@ -15,15 +19,18 @@ const ProductItemList = ({ children }: ProductItemListProps) => {
         <S.ProductItemListHeaderTitle>
           Escolha os sabores
         </S.ProductItemListHeaderTitle>
-        <S.ProductItemListHeaderSelect>
+        <S.ProductItemListHeaderSelect
+        // ativa uma função quando recebe um click na tag da mesa 
+          onChange={({ target }) => onSelectTable(Number(target.value))}
+          name="table"
+          id="table"
+        >
           <option value="default">Selecione a mesa</option>
-          <option value="">Mesa</option>
+          <option value="01">Mesa 01</option>
+          <option value="02">Mesa 02</option>
         </S.ProductItemListHeaderSelect>
-      </S.ProductItemListHeader>{" "}
-      <S.ProductItemList>
-      { children }
-      </S.ProductItemList>
-
+      </S.ProductItemListHeader>
+      <S.ProductItemList>{children}</S.ProductItemList>
     </section>
   );
 };

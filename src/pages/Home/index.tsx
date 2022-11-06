@@ -48,6 +48,11 @@ const Home = () => {
   const [proceedToPayment, setProceedToPayment] = useState<boolean>(false);
 
 
+// altera o state da mesa
+  const [selectedTable, setSelectedTable] = useState<number | undefined>();
+
+
+
 //Vamos implementar a função handleSelection para que quando o usuário clique em uma pizza, ela seja adicionada automaticamente na lista do pedido.
 const handleSelection = (product: ProductResponse) => {
   // fazendo uma bunca dentro de find/ para cada item encontrado sexecuta a função comprar o id do item selecionado com o id do produtos/ isso resulta em truer ou false
@@ -99,7 +104,7 @@ const handleRemoveOrderItem = (id: string) => {
           <b>Pizzas</b>
         </S.HomeProductTitle>
         <S.HomeProductList>
-        <ProductItemList>
+        <ProductItemList onSelectTable={setSelectedTable}>
               {Boolean(products.length) &&
                 products.map((product, index) => (
                   <ProductItem
@@ -121,6 +126,7 @@ const handleRemoveOrderItem = (id: string) => {
     onChangeActiveOrderType={(data) => setActiverOrderType(data)}
     activeOrderType={activeOrderType}
     onRemoveItem={handleRemoveOrderItem}
+    selectedTable={selectedTable}
     />
     </aside>
     {proceedToPayment && (
@@ -128,7 +134,10 @@ const handleRemoveOrderItem = (id: string) => {
           <CheckoutSection
             orders={orders}
             onOrdersChange={(data) => setOrders(data)}
+            onChangeActiveOrderType={(data) => setActiverOrderType(data)}
+            activeOrderType={activeOrderType}
             onCloseSection={() => setProceedToPayment(false)}
+            selectedTable={selectedTable}
           />
         </Overlay>
       )}

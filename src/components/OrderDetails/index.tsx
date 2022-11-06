@@ -13,6 +13,7 @@ type OrderDetailsType = HTMLAttributes<HTMLDivElement>;
 
 type OrderDetailsProps = {
   orders: OrderItemType[];
+  selectedTable?: number | string;
   onProceedToPayment: () => void;//enviando a informação para o compoente pai o Home
   // sempre que acontecer uma alteração no pedido
   onOrdersChange: (orders: OrderItemType[]) => void;
@@ -33,6 +34,7 @@ const OrderDetails = ({
   onChangeActiveOrderType,
   onRemoveItem,
   activeOrderType,
+  selectedTable,
 }: OrderDetailsProps) => {
 
   //Vamos montar a lógica para que o valor do subtotal seja calculado no final do pedido.
@@ -47,7 +49,10 @@ const OrderDetails = ({
     // atualiza o valor da tela quando a gente add ou remove alguns item da lista
   const [priceState, setPriceState] = useState(price);
 
-
+  const disabledButton =
+  !Boolean(orders.length) ||
+  !Boolean(selectedTable) ||
+  selectedTable === "default";
 
   const handleChange = (data: OrderItemType) => {
     const list = orders.map((item) =>
@@ -112,10 +117,19 @@ const OrderDetails = ({
           footer={
             <S.OrderDetailsListFooter>
               <S.OrderDetailsListFooterRow>
-              <span>Subtotal</span>
+                <span>Subtotal</span>
                 <span>R$ {priceState.toFixed(2)}</span>
               </S.OrderDetailsListFooterRow>
-              <ButtonLarge onClick={onProceedToPayment} value="Continue para o pagamento" />
+              {(!Boolean(selectedTable) || selectedTable === "default") && (
+                <S.OrderDetailsListFooterWarning>
+                  Escolha a mesa primeiro
+                </S.OrderDetailsListFooterWarning>
+              )}
+              <ButtonLarge
+                onClick={onProceedToPayment}
+                disabled={disabledButton}
+                value="Continue para o pagamento"
+              />
             </S.OrderDetailsListFooter>
           }
         />

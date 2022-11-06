@@ -1,17 +1,23 @@
-import * as S from "./style";
-import OrderConfirmation from "components/OrderConfirmation";
-import CheckboxIcon from "components/CheckboxIcon";
-import { ReactComponent as Card } from "assets/icons/credit-card.svg";
-import { ReactComponent as Cash } from "assets/icons/wallet.svg"
 import { HTMLAttributes, useState } from "react";
+import CheckboxIcon from "components/CheckboxIcon";
+import OrderConfirmation from "components/OrderConfirmation";
+
+import { ReactComponent as Card } from "assets/icons/credit-card.svg";
+import { ReactComponent as Cash } from "assets/icons/wallet.svg";
+
+import * as S from "./style";
 import { OrderItemType } from "types/OrderItemType";
+import { OrderType } from "types/orderType";
 
 
 type CheckoutSectionType = HTMLAttributes<HTMLDivElement>;
 
 type CheckoutSectionProps = {
   orders: OrderItemType[];
+  selectedTable?: number;
   onOrdersChange: (orders: OrderItemType[]) => void;
+  onChangeActiveOrderType: (data: OrderType) => void;
+  activeOrderType: OrderType;
   onCloseSection: () => void;
 } & CheckoutSectionType;
 
@@ -19,7 +25,10 @@ type CheckoutSectionProps = {
 
 const CheckoutSection = ({
   orders,
+  selectedTable,
   onOrdersChange,
+  onChangeActiveOrderType,
+  activeOrderType,
   onCloseSection,
 }: CheckoutSectionProps) => {
   const [closing, setClosing] = useState<boolean>(false);
@@ -92,8 +101,21 @@ const CheckoutSection = ({
           <S.PaymentActionsDetails>
             <S.PaymentActionsDetailsOrderType>
               <label htmlFor="card">Tipo de pedido</label>
-              <select>
-                <option>{""}</option>
+              <select
+                onChange={({ target }) =>
+                  onChangeActiveOrderType(target.value as OrderType)
+                }
+                name="order-type"
+                id="order-type"
+                value={Object.values(OrderType)
+                  .filter((option) => option === activeOrderType)
+                  .pop()}
+              >
+                {Object.values(OrderType).map((value, idx) => (
+                  <option key={`OrderType-${idx}`} value={value}>
+                    {value}
+                  </option>
+                ))}
               </select>
             </S.PaymentActionsDetailsOrderType>
             <S.PaymentActionsDetailsTableNumber>
@@ -104,7 +126,7 @@ const CheckoutSection = ({
                 id="table"
                 placeholder="01"
                 disabled
-                value={""}
+                value={selectedTable}
               />
             </S.PaymentActionsDetailsTableNumber>
           </S.PaymentActionsDetails>
@@ -124,3 +146,6 @@ const CheckoutSection = ({
 };
 
 export default CheckoutSection;
+
+
+// o metodo filter cria um novo array 
