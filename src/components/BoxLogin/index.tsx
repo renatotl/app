@@ -27,6 +27,7 @@ const BoxLogin = ({onSubmitData, errorMessage}: BoxLoginProps) => {
     
 
     return (
+        
         <S.BoxLogin>
             <S.BoxLoginLogo>
                 <S.BoxLoginLogoText>
