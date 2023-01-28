@@ -1,5 +1,5 @@
 import logo from "assets/imgs/logo.png";
-import { ReactComponent as Logout } from "assets/icons/logout.svg"; //Importando ReactComponent COMO Logout
+import { ReactComponent as Logout } from "assets/icons/logout.svg"; //Importando ReactComponent COMO Logout. Trazendo uma imagem como sendo um component react
 //  * = all  
 import * as S from "./style";
 
