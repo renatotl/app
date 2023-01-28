@@ -1,6 +1,6 @@
 import logo from "assets/imgs/logo.png";
-import { ReactComponent as Logout } from "assets/icons/logout.svg";
-//  * = all
+import { ReactComponent as Logout } from "assets/icons/logout.svg"; //Importando ReactComponent COMO Logout
+//  * = all  
 import * as S from "./style";
 
 import { RoutePath } from "types/routes";
