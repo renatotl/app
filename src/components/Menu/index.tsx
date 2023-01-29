@@ -43,6 +43,15 @@ const Menu = ({active, navItems, onNavigate, onLogout}:MenuProps) => {
 };
 
 export default Menu;
+  
+  
+  /*
+  <S.MenuItemButton 
+            active={item.path === active}// compara o caminho do primeiro item de menu e verifica se é igual ao valor que vem no activ
+            onClick={() => onNavigate(item.path)}// se for por exemplo HOME ele renderiza HOME
+            >
+            
+            */
 
 /*
 {navItems.map((item, index) => (
