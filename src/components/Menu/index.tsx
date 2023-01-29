@@ -7,7 +7,7 @@ import { RoutePath } from "types/routes";
 import { NavItem } from "./types";
 
 
-
+// essa interface define as propriedades que nosso menu deve ter.
 interface MenuProps {
   active: RoutePath; //define qual é a rota ativa no momento
   navItems: NavItem[];
