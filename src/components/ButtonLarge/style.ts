@@ -23,3 +23,7 @@ export const ButtonLarge = styled.button`
 		}
 	`}
 `;
+
+// &:disabled quando o botão estiver disabilitado o curso não vai aparecer. 
+// definindo a cor de fundo background: ${theme.colors.baseBg1};
+// definindo a cor de texto color: ${theme.colors.textDark};
