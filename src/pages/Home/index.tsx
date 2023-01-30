@@ -18,6 +18,16 @@ import { OrderItemType } from "types/OrderItemType";
 
 
 
+/* A lib LUxon serve para pegar o date e hora e com isso conseguimos botar na tela.
+mas antes precisamos instala-la: yarn add luxon e depois yarn add -D @types/luxon. O -D é dependêcia de desenvlvimento
+
+  const dateDescription = DateTime.now().toLocaleString({
+    ...DateTime.DATE_SHORT,
+    weekday: "long",
+  });
+  
+  */
+
 // o S da teg Home se refere  styled.section do Style
 const Home = () => {
   // pegando a hpra de agora.
