@@ -7,8 +7,11 @@ interface ProductItemListProps {
   onSelectTable: (data: number) => void;
   children: React.ReactNode;
 }
+//children: React.ReactNode; referência ao node do react
+// agora lá no Home não dá mais o erro no ProductItemList porque agora o children foi declarado/ como se o procutItem fosse um parâmetro
+// e tivesse cido passado pra ca, mas lá no HOME
 
-
+// criamos o children como parâmetro e ele precisa ser typado e foi passado dentro do return
 const ProductItemList = ({ children, onSelectTable }: ProductItemListProps) => {
 
 
