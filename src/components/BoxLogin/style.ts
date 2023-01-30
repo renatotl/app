@@ -27,6 +27,7 @@ export const BoxLoginLogo = styled.div`
 
 
 
+// cliamos um SPAN com um texto dentro de styled.h1
 export const BoxLoginLogoText = styled.h1`
 ${({ theme }) => css`
 font-family: ${theme.constants.logoFontFamily};
