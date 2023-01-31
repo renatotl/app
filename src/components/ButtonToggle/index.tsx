@@ -13,6 +13,10 @@ const ButtonToggle = ({
   active = false,
   ...props
 }: ButtonToggleProps) => {
+  
+  
+  // Passando o props e activo com o valor ativo no boulean e em baixo renderizando o value 
+  // passamos também lá no OrderDetails
   return (
     <S.ButtonToggle {...props} active={active}>
       {value}
