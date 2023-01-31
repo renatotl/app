@@ -4,6 +4,7 @@ import React, { HTMLAttributes } from "react";
 
 type DivType = HTMLAttributes<HTMLDivElement>;
 //E além do tipo DivType que escrevemos acima, vamos também criar o tipo OrderItemListProps com o seguinte código
+// o react.node é como o DOM 
 export type OrderItemListProps = {
   header?: React.ReactNode;
   footer?: React.ReactNode;
