@@ -18,6 +18,7 @@ type NavColumnProps = {
 const NavColumn = ({ activeRoute }: NavColumnProps) => {
   const navigate = useNavigate();
 
+  // array de objetos
   const items = [
     {
       icon: <Market />,
