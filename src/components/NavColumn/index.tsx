@@ -11,6 +11,8 @@ import { useNavigate } from "react-router-dom";
 
 type NavColumnType = HTMLAttributes<HTMLDivElement>;
 
+
+// identificando rotaativa
 type NavColumnProps = {
   activeRoute: RoutePath;
 } & NavColumnType;
@@ -56,3 +58,21 @@ const NavColumn = ({ activeRoute }: NavColumnProps) => {
 };
 
 export default NavColumn;
+
+/*
+      {items.map((item, key) => (
+        <NavColumnItem
+          onClick={() => navigate(item.navigation)}   // a rota vem do arquivo settings da pasta settings
+          active={item.navigation === activeRoute}    //  verificando se o item.navigation é igual a rota ativa na quele momento
+          icon={item.icon}
+          title={item.title}
+          key={key}
+          subtitle={item.subtitle}
+        />
+      ))}
+      
+      
+      
+      PAR cada item,icon será renderizado um icon
+      
+      */
