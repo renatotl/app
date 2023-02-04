@@ -20,6 +20,8 @@ export const EditProduct = styled.div`
   `}
 `;
 
+// box-sizing: border-box; não deixa estourar os limites da caixa
+
 export const EditProductImage = styled.img`
   ${() => css`
     width: 130px;
