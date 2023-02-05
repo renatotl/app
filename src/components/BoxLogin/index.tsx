@@ -6,10 +6,16 @@ import * as S from "./style";
 type BoxLoginType =  HTMLAttributes<HTMLDivElement>
 
 export type BoxLoginProps = {
-  // essa propriedade só é assionada quando tiver informação 
+  // essa propriedade só é assionada quando tiver informação/ onSubmitData é uma interface que recebe password e nickname dentro de data
   onSubmitData: (data: {nickname: string, password: string}) => void
   errorMessage: string
 } & BoxLoginType;
+
+
+// errorMessage: string se der erro mostrará essa mensagem
+
+
+// const BoxLogin = ({onSubmitData, errorMessage}: BoxLoginProps) => { é preciso declará-la no Login do Pages
 
 const BoxLogin = ({onSubmitData, errorMessage}: BoxLoginProps) => {
     const [nickname, setNickname] = useState('');
