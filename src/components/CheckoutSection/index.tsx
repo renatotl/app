@@ -19,7 +19,7 @@ type CheckoutSectionProps = {
   onOrdersChange: (orders: OrderItemType[]) => void;
   onChangeActiveOrderType: (data: OrderType) => void;
   activeOrderType: OrderType;
-  onCloseSection: () => void;
+  onCloseSection: () => void; // o componente será fechado
 } & CheckoutSectionType;
 
 //Este componente será responsável por coordenar a confirmação de pagamento e fechamento de pedidos
@@ -39,7 +39,7 @@ const CheckoutSection = ({
 
 
   const handleCloseSection = () => {
-    setClosing(true);
+    setClosing(true);// Após 800 milisegundos envia essa informação para o componente HOME o valor TRUE
     setTimeout(onCloseSection, 800);
   };
   
