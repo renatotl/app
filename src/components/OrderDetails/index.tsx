@@ -15,7 +15,7 @@ type OrderDetailsProps = {
   orders: OrderItemType[];
   selectedTable?: number | string;
   onProceedToPayment: () => void;//enviando a informação para o compoente pai o Home
-  // sempre que acontecer uma alteração no pedido
+  // sempre que acontecer uma alteração no pedido/ passando informação do FILHO para o PAI como função
   onOrdersChange: (orders: OrderItemType[]) => void;
 
   onChangeActiveOrderType: (data: OrderType) => void;
