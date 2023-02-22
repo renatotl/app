@@ -146,7 +146,7 @@ const handleRemoveOrderItem = (id: string) => {
             onOrdersChange={(data) => setOrders(data)}
             onChangeActiveOrderType={(data) => setActiverOrderType(data)}
             activeOrderType={activeOrderType}
-            onCloseSection={() => setProceedToPayment(false)}
+             onCloseSection={() => setProceedToPayment(false)}  <!-- Transforma novamente para FALSE -->
             selectedTable={selectedTable}
           />
         </Overlay>
