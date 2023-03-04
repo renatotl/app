@@ -54,12 +54,16 @@ const OrderDetails = ({
   !Boolean(selectedTable) ||
   selectedTable === "default";
 
+
+
+  // recebe o onItemChange do OrderItem
   const handleChange = (data: OrderItemType) => {
     const list = orders.map((item) =>
     // se for igual ele renderiza os dados do order item, se nao ele renderiza o proprio item
       item.product.id === data.product.id ? data : item
     );
 
+    // enviando essa informação para o HOME
     onOrdersChange(list);
   }
 

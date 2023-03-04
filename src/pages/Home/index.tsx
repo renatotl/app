@@ -10,12 +10,15 @@ import OrderDetails from "components/OrderDetails";
 import Overlay from "components/Overlay";
 import CheckoutSection from "components/CheckoutSection";
 import { useNavigate } from "react-router-dom";
-import { products } from "mocks/products";
+import { products } from "mocks/products";// produto mocado
 import { ProductResponse } from "types/Product";
 import { OrderType } from "types/orderType";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { OrderItemType } from "types/OrderItemType";
-
+import { useQuery } from "@tanstack/react-query";
+import { QueryKey } from "types/QueryKey";
+import { ProductService } from "services/ProductService"
+import { TableService } from "services/TableService";
 
 
 /* A lib LUxon serve para pegar o date e hora e com isso conseguimos botar na tela.
@@ -38,10 +41,31 @@ const Home = () => {
   });
 
   const navigate = useNavigate();
+
+    // Após a atualização da biblioteca react query (sendo utilizada como @tanstack/react-query), o método useQuery agora só aceita array como primeiro parâmetro ao invés de string como mostrado no vídeo
+    const { data: productsData } = useQuery(
+      // pegando a lista
+      [QueryKey.PRODUCTS],
+      ProductService.getLista
+    );
+
+
 // qual está ativo Comer_No_LOCAL ou outros
   const [activeOrderType, setActiverOrderType] = useState(
     OrderType.COMER_NO_LOCAL
   );
+
+      // Após a atualização da biblioteca react query (sendo utilizada como @tanstack/react-query), o método useQuery agora só aceita array como primeiro parâmetro ao invés de string como mostrado no vídeo
+      const { data: tablesData } = useQuery(
+        [QueryKey.TABLES],
+        TableService.getLista
+      );
+ 
+      const tables = tablesData || [];
+      
+
+  // resposta que vem da api
+  const [products, setProducts] = useState<ProductResponse[]>([]);
 
 
 
@@ -85,6 +109,12 @@ const handleRemoveOrderItem = (id: string) => {
   const filtered = orders.filter((i) => i.product.id != id);
   setOrders(filtered);
 };
+
+useEffect(() => {
+  // ou ostra a lista de produtos do bacjend ou a lista vazia 
+  setProducts(productsData || []);
+  // mas ele precisa monitorar o productsData
+}, [productsData]);
 
   return (
     <S.Home>

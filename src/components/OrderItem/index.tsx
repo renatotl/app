@@ -13,7 +13,7 @@ export type OrderItemProps = {
   quantity: number;
   observation?: string;
   onRemoveItem?: () => void;
-  onItemChange: (item: OrderItemType) => void;
+  onItemChange: (item: OrderItemType) => void;// quando o item é alterado por algim motivo/ não retorna so executa
 
 } & DivType;
 
@@ -49,6 +49,7 @@ const OrderItem = ({
 /*Até agora já implementamos várias funcionalidades em relação aos pedidos, mas se tentarmos modificar a quantidade manualmente, o subtotal não modifica.
 Vamos resolver isso indo até src/components/OrderItem/index.tsx, adicionamos uma nova propriedade, criamos uma função chamada handleChange e a invocamos em OrderItemQuantity e OrderItemLeftObservation*/
   const handleChange = (quantityParam: number, observationParam: string) => {
+    // criando um objeto/ da qui vai lá pro orerdetails
     onItemChange({
       product: product,
       quantity: quantityParam,

@@ -1,4 +1,5 @@
 import * as S from "./style";
+import { TableResponse } from "types/api/table";
 
 
 /*Até aqui o nosso botão de seguir para o pagamento fica habilitado a todo o momento, mesmo não contendo nenhum produto no pedido e nenhuma mesa selecionada.
@@ -6,7 +7,9 @@ Vamos configurá-lo para habilitar apenas quando tiver pelo menos um produto adi
 interface ProductItemListProps {
   onSelectTable: (data: number) => void;
   children: React.ReactNode;
+  tables: TableResponse[];
 }
+
 //children: React.ReactNode; referência ao node do react
 // agora lá no Home não dá mais o erro no ProductItemList porque agora o children foi declarado/ como se o procutItem fosse um parâmetro
 // e tivesse cido passado pra ca, mas lá no HOME
